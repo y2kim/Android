@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <!-- vertical 선형 레이아웃  -->
+
+    <EditText
+        android:id="@+id/txtExam01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnExam01"
+        android:text="버튼"
+
+        />
+<!--@ 리소스를 뜻함  + 는 처음으로 만드는것 -->
+    <!-- parent march 따라감  -->
+</LinearLayout>
