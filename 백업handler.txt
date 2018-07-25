@@ -1,4 +1,4 @@
-package exam.android.kh.papagotranslator;
+﻿package exam.android.kh.papagotranslator;
 
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -25,23 +25,26 @@ public class MainActivity extends AppCompatActivity {
                 //android.view.ViewRootImpl$CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views.
                 //android 방식의 thread 방식
                  final EditText editText = findViewById(R.id.edit01);
-                 final String text = editText.getText().toString();
                  final TextView textView = findViewById(R.id.textresult01);
                  final NaverAPI naverAPI = new NaverAPI();
 
+                 final Handler handler = new Handler()
+                {
+                    public void handleMessage(Message msg)
+                    {
+                        textView.setText(str);
+                    }
+                };
 
                 new Thread(){
                      public void run() {
 
+                         Message msg = handler.obtainMessage();
+                         handler.sendMessage(msg);
+
                          try {
-                          final String result = naverAPI.translate(text);
-                          runOnUiThread(new Runnable() {
-                              // 된다
-                              @Override
-                              public void run() {
-                                  textView.setText(result);
-                              }
-                          });
+                             str =  naverAPI.translate(editText.getText().toString());
+
                          } catch (Exception e) {
                              e.printStackTrace();
                          }
