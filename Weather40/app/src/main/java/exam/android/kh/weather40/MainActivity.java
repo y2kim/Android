@@ -65,17 +65,16 @@ public class MainActivity extends AppCompatActivity {
                                     HttpURLConnection con = (HttpURLConnection) myurl.openConnection();
                                     Scanner sc = new Scanner(con.getInputStream(), "utf8");
                                     String[] strarr1 = new String[1150];
+                                    String[] strarr2 = new String[1150];
                                     int i =0;
+                                    String line = null;
                                     while (true) {
 
-                                        String line = null;
+
                                         try {
                                             line = sc.nextLine();
                                             strarr1[i++]=sc.nextLine();
-                                        } catch (Exception e2) {
-                                            System.out.println("끝남");
-                                            break;
-                                        }
+
                                         if (line.contains("<data seq=\"0\">")) {
                                             if(strarr1[i-3].contains("<data seq=\"0\">")) {
                                                 listString.set(0, (line.split("<temp>")[1].split("</temp>")[0]));
@@ -89,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
 //                                            if(strarr1[i-17].contains("<data seq=\"0\">")) {
 //                                                listString.set(3, (line.split("<reh>")[1].split("</reh>")[0]));
 //                                            }
+                                        }
+
+                                        } catch (Exception e2) {
+                                            System.out.println("끝남");
+                                            break;
                                         }
                                     }
                                     con.disconnect();
